@@ -1,2 +1,1 @@
-# marabunta.github.io
-https://marabunta.io
+http://marabunta.io

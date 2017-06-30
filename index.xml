@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>marabunta</title>
+    <link>https://marabunta.io/</link>
+    <description>Recent content on marabunta</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 30 Jun 2017 14:44:15 +0200</lastBuildDate>
+    
+	<atom:link href="https://marabunta.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>About</title>
+      <link>https://marabunta.io/about/</link>
+      <pubDate>Fri, 30 Jun 2017 14:44:15 +0200</pubDate>
+      
+      <guid>https://marabunta.io/about/</guid>
+      <description> What is marabunta? From its definition, marabunta is one of the names given to army ants. The idea of the project is to create something similar using a client-server topology aiming to create a distributed task manager.
+Further uses just to mention some could be:
+ backdoor for managing full node not requiring ssh masterless monitoring of the nodes itself orchestrate distributed tasks remote execution scheduled tasks service discovery  </description>
+    </item>
+    
+  </channel>
+</rss>
