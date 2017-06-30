@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>marabunta</title>
+    <link>https://marabunta.io/</link>
+    <description>Recent content on marabunta</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright> </copyright>
+    <lastBuildDate>Fri, 30 Jun 2017 14:44:15 +0200</lastBuildDate>
+    
+	<atom:link href="https://marabunta.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>About</title>
+      <link>https://marabunta.io/about/</link>
+      <pubDate>Fri, 30 Jun 2017 14:44:15 +0200</pubDate>
+      
+      <guid>https://marabunta.io/about/</guid>
+      <description>What is marabunta? A set of tools server/client for managing infrastructure using gRPC as main protocol.</description>
+    </item>
+    
+  </channel>
+</rss>
