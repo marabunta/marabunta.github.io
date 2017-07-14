@@ -18,7 +18,7 @@
       <pubDate>Fri, 30 Jun 2017 14:44:15 +0200</pubDate>
       
       <guid>https://marabunta.io/about/</guid>
-      <description>What is marabunta? A set of tools server/client for managing infrastructure using gRPC as main protocol.</description>
+      <description>What is marabunta? A set of tools (client/server) for handling webhooks.</description>
     </item>
     
   </channel>
