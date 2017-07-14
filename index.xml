@@ -18,7 +18,7 @@
       <pubDate>Fri, 30 Jun 2017 14:44:15 +0200</pubDate>
       
       <guid>https://marabunta.io/about/</guid>
-      <description>What is marabunta? A set of tools (client/server) for handling webhooks.</description>
+      <description>What is marabunta? A set of tools (client/server) using gRPC for handling webhooks.</description>
     </item>
     
   </channel>
