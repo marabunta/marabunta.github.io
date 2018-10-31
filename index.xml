@@ -17,7 +17,7 @@
       <pubDate>Fri, 30 Jun 2017 14:44:15 +0200</pubDate>
       
       <guid>https://marabunta.io/about/</guid>
-      <description>What is marabunta? A distributed task manager using gRPC at is core with a REST interface.</description>
+      <description>What is marabunta? A distributed task manager using gRPC at is core with a REST management interface.</description>
     </item>
     
   </channel>
