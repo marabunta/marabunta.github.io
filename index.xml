@@ -17,7 +17,9 @@
       <pubDate>Fri, 30 Jun 2017 14:44:15 +0200</pubDate>
       
       <guid>https://marabunta.io/about/</guid>
-      <description>What is marabunta? A distributed task manager using gRPC at is core with a REST management interface.</description>
+      <description>What is marabunta? From its definition, marabunta is one of the names given to army ants.
+The idea of the project is to create something similar applying, following nature knowledge and patterns using a client-server topology aiming to create a distributed task manager using gRPC at is core with an HTTP REST management interface.
+ Think about it as if your whole infrastructure nodes where a bunch of ants at your command in where you could do distributed tasks using all your nodes at once, in a defined group or in a single node, keeping track of each task result and output.</description>
     </item>
     
   </channel>
