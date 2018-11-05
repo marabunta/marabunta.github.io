@@ -84,9 +84,12 @@
 
 <h1 id="the-scheduler">The scheduler</h1>
 
-<p>Tasks are stored in a MySQL, a worker periodically check the schedules and
-creates, updates or remove tasks from a live queue that uses redis, rabbitmq,
-nats, etc as a backend and the one is consumed by N-clients.</p>
+<p>Tasks are stored in a MySQL, a worker (scheduler) periodically check the
+schedules and creates, updates or remove tasks from a live queue that uses
+redis, rabbitmq, nats, etc as a backend. One or more clients consume the queue
+and via gRPC stream dispatch the task to the proper client, if the task is
+finished, the client updates the result/status via gRPC Unary if not task is
+re-queued.</p>
 
 <pre><code class="language-text">
 +---------------+                   +-------------------------------------+
