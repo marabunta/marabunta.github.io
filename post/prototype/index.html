@@ -122,6 +122,20 @@ task is re-queued.</p>
 
 </code></pre>
 
+<p>marabunta should scale out of the box:</p>
+
+<pre><code class="language-text">
++-------+.
+| MySQL | |  \
++-------+ |    \    +-----------+.       +-----------+
+`--------`       -- | marabunta | |  --&lt; | N-clients |
++-------+.     /    +-----------+ |      +-----------+
+| redis | |  /      `------------`
++-------+ |
+`--------`
+
+</code></pre>
+
                 </section>
             </article>
             <footer id="post-meta" class="clearfix">
