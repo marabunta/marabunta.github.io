@@ -17,7 +17,7 @@
       <pubDate>Mon, 05 Nov 2018 11:02:09 +0100</pubDate>
       
       <guid>https://marabunta.io/post/prototype/</guid>
-      <description>The scheduler Tasks are stored in a MySQL, a worker (scheduler) periodically check the schedules and creates, updates or remove tasks from a live queue that uses redis, rabbitmq, nats, etc as a backend. One or more clients consume the queue and via gRPC stream dispatch the task to the proper client, if the task is finished, the client updates the result/status via gRPC Unary if not task is re-queued.</description>
+      <description>The scheduler Tasks are stored in a MySQL, a worker (scheduler) periodically check the schedules and creates, updates or remove tasks from a live queue that uses redis, rabbitmq, nats, etc as a backend. One or more clients consume the queue and via a bidirectional gRPC stream dispatch the task to the proper client, if the task is finished, the client updates the result/status via gRPC Unary if not task is re-queued.</description>
     </item>
     
   </channel>
