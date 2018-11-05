@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>marabunta</title>
-    <link>https://marabunta.io/</link>
-    <description>Recent content on marabunta</description>
+    <title>Prototype on marabunta</title>
+    <link>https://marabunta.io/tags/prototype/</link>
+    <description>Recent content in Prototype on marabunta</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 05 Nov 2018 11:02:09 +0100</lastBuildDate>
     
-	<atom:link href="https://marabunta.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://marabunta.io/tags/prototype/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,17 +19,6 @@
       <guid>https://marabunta.io/post/prototype/</guid>
       <description> The scheduler Tasks are stored in a MySQL, a worker periodically check the schedules and creates, updates or remove tasks from a live queue that uses redis, rabbitmq, nats, etc as a backend and the one is consumed by N-clients.
 +---------------+ +-------------------------------------+ | task in MySQL | ----------------&amp;gt; | scheduler | +---------------+ | query DB every minutes | | | create/update/remove tasks in queue | | +-------------------------------------+ | | | / \ | +------------------------------+ | | task queue | &amp;lt;----+ | | (redis, nats, rabbitmq, etc) | | | +------------------------------+ | | | | | / \ | | +------------------------------+ | | | gRPC (stream) | | | | dispatch tasks | | | +------------------------------+ | | \ / | | | | | +------------------------------+ | | | gRPC (stream - oneof) | | | | (do X tasks) | | | +------------------------------+ | / \ | | +----------------------+ +------------------------------+ | | gRPC (update result) | -- YES --&amp;lt; | tasks Done | &amp;gt;--- NO +----------------------+ +------------------------------+  </description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>https://marabunta.io/about/</link>
-      <pubDate>Fri, 30 Jun 2017 14:44:15 +0200</pubDate>
-      
-      <guid>https://marabunta.io/about/</guid>
-      <description>What is marabunta? From its definition, marabunta is one of the names given to army ants.
-The idea of the project is to create something similar applying, following nature knowledge and patterns using a client-server topology aiming to create a distributed task manager using gRPC at is core with an HTTP REST management interface.
- Think about it as if your whole infrastructure nodes where a bunch of ants at your command in where you could do distributed tasks using all your nodes at once, in a defined group or in a single node, keeping track of each task result and output.</description>
     </item>
     
   </channel>

@@ -3,18 +3,48 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://marabunta.io/post/prototype/</loc>
+    <lastmod>2018-11-05T11:02:09+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://marabunta.io/about/</loc>
     <lastmod>2017-06-30T14:44:15+02:00</lastmod>
   </url>
   
   <url>
+    <loc>https://marabunta.io/tags/architecture/</loc>
+    <lastmod>2018-11-05T11:02:09+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://marabunta.io/tags/design/</loc>
+    <lastmod>2018-11-05T11:02:09+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://marabunta.io/post/</loc>
+    <lastmod>2018-11-05T11:02:09+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://marabunta.io/tags/prototype/</loc>
+    <lastmod>2018-11-05T11:02:09+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://marabunta.io/tags/</loc>
+    <lastmod>2018-11-05T11:02:09+01:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://marabunta.io/</loc>
-    <lastmod>2017-06-30T14:44:15+02:00</lastmod>
+    <lastmod>2018-11-05T11:02:09+01:00</lastmod>
     <priority>0</priority>
   </url>
   

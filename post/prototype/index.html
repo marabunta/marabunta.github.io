@@ -8,7 +8,7 @@
 		<meta name="description" content="A distributed task manager">
 		<meta name="keywords" content="distributed, task, manager, client, server, network, p2p, remote, scheduler">
 		<meta name="generator" content="Hugo 0.50" />
-		<title>About &middot; marabunta</title>
+		<title>prototype &middot; marabunta</title>
 		<link rel="shortcut icon" href="https://marabunta.io/images/favicon.ico">
         <link rel="apple-touch-icon" sizes="57x57" href="https://marabunta.io/images/apple-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="https://marabunta.io/images/apple-icon-60x60.png">
@@ -50,6 +50,10 @@
 	
 
 	
+		<a href="https://github.com/marabunta/marabunta/">Github</a>
+		<a href="https://github.com/marabunta/marabunta/issues">Issues</a>
+		<a href='https://marabunta.io/about'>About</a>
+	
 
 	
 	<a class="cta" href="https://marabunta.io/index.xml">Subscribe</a>
@@ -59,31 +63,61 @@
         <section id="wrapper">
             <article class="post">
                 <header>
-                    <h1>About</h1>
+                    <h1>prototype</h1>
                     <h2 class="headline">
                     <br>
+                    
+                    
+                        
+                            <a href="https://marabunta.io/tags/prototype">prototype</a>
+                        
+                            <a href="https://marabunta.io/tags/design">design</a>
+                        
+                            <a href="https://marabunta.io/tags/architecture">architecture</a>
+                        
+                    
                     
                     </h2>
                 </header>
                 <section id="post-body">
                     
 
-<h1 id="what-is-marabunta">What is marabunta?</h1>
+<h1 id="the-scheduler">The scheduler</h1>
 
-<p>From its definition, <a href="https://en.wikipedia.org/wiki/Army_ant">marabunta</a> is one
-of the names given to army ants.</p>
+<p>Tasks are stored in a MySQL, a worker periodically check the schedules and
+creates, updates or remove tasks from a live queue that uses redis, rabbitmq,
+nats, etc as a backend and the one is consumed by N-clients.</p>
 
-<p>The idea of the project is to create something similar applying, following
-nature knowledge and patterns using a client-server topology aiming to create a
-<strong>distributed task manager</strong> using <a href="https://grpc.io">gRPC</a> at is core with an
-HTTP REST management interface.</p>
+<pre><code class="language-text">
++---------------+                   +-------------------------------------+
+| task in MySQL | ----------------&gt; |             scheduler               |
++---------------+                   |       query DB every minutes        |
+       |                            | create/update/remove tasks in queue |
+       |                            +-------------------------------------+
+       |                                           |
+       |                                          / \
+       |                            +------------------------------+
+       |                            |         task queue           | &lt;----+
+       |                            | (redis, nats, rabbitmq, etc) |      |
+       |                            +------------------------------+      |
+       |                                           |                      |
+       |                                          / \                     |
+       |                            +------------------------------+      |
+       |                            |         gRPC (stream)        |      |
+       |                            |        dispatch tasks        |      |
+       |                            +------------------------------+      |
+       |                                          \ /                     |
+       |                                           |                      |
+       |                            +------------------------------+      |
+       |                            |     gRPC (stream - oneof)    |      |
+       |                            |         (do X tasks)         |      |
+       |                            +------------------------------+      |
+      / \                                          |                      |
++----------------------+            +------------------------------+      |
+| gRPC (update result) | -- YES --&lt; |         tasks Done           | &gt;--- NO
++----------------------+            +------------------------------+
 
-<blockquote>
-<p>Think about it as if your whole infrastructure nodes where a bunch of ants at
-your command in where you could do distributed tasks using all your nodes at
-once, in a defined group or in a single node, keeping track of each task result
-and output.</p>
-</blockquote>
+</code></pre>
 
                 </section>
             </article>
@@ -91,7 +125,7 @@ and output.</p>
                 
                     
                 <section id="sharing">
-                    <a class="twitter" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fmarabunta.io%2fabout%2f - About "><span class="icon-twitter"> Tweet</span></a>
+                    <a class="twitter" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fmarabunta.io%2fpost%2fprototype%2f - prototype "><span class="icon-twitter"> Tweet</span></a>
 
 <a class="facebook" href="#" onclick="
     window.open(
