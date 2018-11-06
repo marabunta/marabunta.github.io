@@ -17,8 +17,9 @@
       <pubDate>Tue, 06 Nov 2018 15:13:13 +0100</pubDate>
       
       <guid>https://marabunta.io/post/the-problem-to-solve/</guid>
-      <description>Cloud Backup Having to backup one, two or 10 systems is doable, but whey you need to backup hundreds and change frequently or temporally the credentials, bucket names etc things become complicated to manage.
-One of the goals is to dynamically take advantage of the task payload in where the database credential could be passed, same as S3 access key etc, simplifying and securing with this the backup process at any scale.</description>
+      <description>There are many good tools, frameworks offering multiple solutions for managing jobs, tasks, queues, etc, many of them are listed here http://queues.io/.
+Technology changes and with this, new tools emerge. Days back you could be using gearman, these days probably nats.io or even ansible ad-hoc:
+$ ansible all -a &amp;quot;ping -c3 1.1.1.1&amp;quot; -u devops --become  Just as an example that with multiple technologies the same result can be achieved, some relatively easy, others faster, etc.</description>
     </item>
     
     <item>
