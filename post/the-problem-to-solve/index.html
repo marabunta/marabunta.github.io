@@ -8,7 +8,7 @@
 		<meta name="description" content="A distributed task manager">
 		<meta name="keywords" content="distributed, task, manager, client, server, network, p2p, remote, scheduler">
 		<meta name="generator" content="Hugo 0.50" />
-		<title>prototype &middot; marabunta</title>
+		<title>The Problem to Solve &middot; marabunta</title>
 		<link rel="shortcut icon" href="https://marabunta.io/images/favicon.ico">
         <link rel="apple-touch-icon" sizes="57x57" href="https://marabunta.io/images/apple-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="https://marabunta.io/images/apple-icon-60x60.png">
@@ -63,78 +63,14 @@
         <section id="wrapper">
             <article class="post">
                 <header>
-                    <h1>prototype</h1>
+                    <h1>The Problem to Solve</h1>
                     <h2 class="headline">
                     <br>
-                    
-                    
-                        
-                            <a href="https://marabunta.io/tags/prototype">prototype</a>
-                        
-                            <a href="https://marabunta.io/tags/design">design</a>
-                        
-                            <a href="https://marabunta.io/tags/architecture">architecture</a>
-                        
-                    
                     
                     </h2>
                 </header>
                 <section id="post-body">
-                    
-
-<h1 id="the-big-picture">The big picture</h1>
-
-<p>Tasks are stored in a MySQL, a worker (scheduler) periodically check the
-schedules and creates, updates or remove tasks from a live queue that uses
-redis, rabbitmq, nats, etc as a backend. One or more clients consume the queue
-and via a bidirectional gRPC stream dispatch the task to the proper client, if
-the task is finished, the client updates the result/status via gRPC Unary if not
-task is re-queued.</p>
-
-<pre><code class="language-text">
-+---------------+                   +-------------------------------------+
-| task in MySQL | ----------------&gt; |             scheduler               |
-+---------------+                   |       query DB every minutes        |
-       |                            | create/update/remove tasks in queue |
-       |                            +-------------------------------------+
-       |                                           |
-       |                                          / \
-       |                            +------------------------------+
-       |                            |         task queue           | &lt;----+
-       |                            | (redis, nats, rabbitmq, etc) |      |
-       |                            +------------------------------+      |
-       |                                           |                      |
-       |                                          / \                     |
-       |                            +------------------------------+      |
-       |                            |         gRPC (stream)        |      |
-       |                            |        dispatch tasks        |      |
-       |                            +------------------------------+      |
-       |                                          \ /                     |
-       |                                           |                      |
-       |                            +------------------------------+      |
-       |                            |     gRPC (stream - oneof)    |      |
-       |                            |         (do X tasks)         |      |
-       |                            +------------------------------+      |
-      / \                                          |                      |
-+----------------------+            +------------------------------+      |
-| gRPC (update result) | -- YES --&lt; |         tasks Done           | &gt;-- NO
-+----------------------+            +------------------------------+
-
-</code></pre>
-
-<p><strong>marabunta</strong> should scale out of the box:</p>
-
-<pre><code class="language-text">
-+-------+.
-| MySQL | |  \
-+-------+ |    \    +-----------+.       +-----------+
-`--------`       -- | marabunta | |  --&lt; | N-clients |
-+-------+.     /    +-----------+ |      +-----------+
-| redis | |  /      `------------`
-+-------+ |
-`--------`
-
-</code></pre>
+                    <p>TODO</p>
 
                 </section>
             </article>
@@ -142,7 +78,7 @@ task is re-queued.</p>
                 
                     
                 <section id="sharing">
-                    <a class="twitter" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fmarabunta.io%2fpost%2fprototype%2f - prototype "><span class="icon-twitter"> Tweet</span></a>
+                    <a class="twitter" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fmarabunta.io%2fpost%2fthe-problem-to-solve%2f - The%20Problem%20to%20Solve "><span class="icon-twitter"> Tweet</span></a>
 
 <a class="facebook" href="#" onclick="
     window.open(
