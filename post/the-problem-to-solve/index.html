@@ -70,7 +70,34 @@
                     </h2>
                 </header>
                 <section id="post-body">
-                    <p>TODO</p>
+                    
+
+<h1 id="cloud-backup">Cloud Backup</h1>
+
+<p>Having to backup one, two or 10 systems is doable, but whey you need to backup hundreds and change frequently or temporally the credentials, bucket names etc things become complicated to manage.</p>
+
+<p>One of the goals is to dynamically take advantage of the task <code>payload</code> in where the database credential could be passed, same as S3 access key etc, simplifying and securing with this the backup process at any scale.</p>
+
+<p>For example, imagine that you need to test a new S3 bucket that supports encryption on REST, therefore you have new access keys and bucket name, to create a basic test the task <code>payload</code> would contain this new values and that should be enough if your test ran successfully you could simply upload the existing payload for other tasks and that should be enough without even need to access the remote system via ssh for example.</p>
+
+<p>The client has native support for S3 simplifying with this the usage of the cloud storage in use.</p>
+
+<h1 id="single-bidirectional-secure-connection-client-server">Single bidirectional secure connection (client-server)</h1>
+
+<p>Many nodes are behind firewalls <code>block in, pass out</code> once the client establishes a connection with the server it should be available to reuse the connection besides securing it using TLS.</p>
+
+<p>The server will never try to open a connection to a client and communication always should begin from the client to the server.</p>
+
+<h1 id="kanban-for-infrastructure">Kanban for infrastructure</h1>
+
+<p>When creating a task for one, two or hundreds of devices (IoT) a simple board representing the progress of the task  among all the devices gives a better overview of how things are performing, this can be later extended via solutions like in time series but in the goal to keep things simple with random green dots:</p>
+
+<p>task  | to do | in progress | done |
+&mdash;&mdash;+&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;+
+node1 |   *   |             |      |
+node2 |       |      *      |      |
+&hellip;.
+nodeN |       |             |   *  |</p>
 
                 </section>
             </article>

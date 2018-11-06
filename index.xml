@@ -17,7 +17,8 @@
       <pubDate>Tue, 06 Nov 2018 15:13:13 +0100</pubDate>
       
       <guid>https://marabunta.io/post/the-problem-to-solve/</guid>
-      <description>TODO</description>
+      <description>Cloud Backup Having to backup one, two or 10 systems is doable, but whey you need to backup hundreds and change frequently or temporally the credentials, bucket names etc things become complicated to manage.
+One of the goals is to dynamically take advantage of the task payload in where the database credential could be passed, same as S3 access key etc, simplifying and securing with this the backup process at any scale.</description>
     </item>
     
     <item>
