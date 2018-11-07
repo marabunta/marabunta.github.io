@@ -136,6 +136,76 @@ task is re-queued.</p>
 
 </code></pre>
 
+<h1 id="task-fields-schema">task fields (schema)</h1>
+
+<pre><code>cdate:       creation date
+mdate:       modified date
+name:        task name
+payload:     payload (could be reused for multiple targets)
+retries:     int
+retried:     int
+schedule:    when to run the task
+sdate:       state date
+state:       created, queued, runnning, done, error
+target:      where to run the task
+uuid:        unique id for the task
+type:        ondemand or scheduled
+description: task description
+messages:    result, ouput etc
+</code></pre>
+
+<hr />
+
+<h3 id="state">state</h3>
+
+<pre><code>1: created
+2: queued
+3: running
+4: done
+5: error
+</code></pre>
+
+<hr />
+
+<h3 id="type">type</h3>
+
+<p>Based on the type of the task the scheduler need to know how to handle it, for on-demand it could just add it to the database to keep track of the status but dispatched as fast as possible.</p>
+
+<pre><code>1: ondemand
+2: scheduled
+</code></pre>
+
+<p><strong>Ondemand (FCFS)</strong>
+first come, first served basis, normally not persistent bypassing the database going directly to the dispatcher.</p>
+
+<p><strong>Scheduled</strong></p>
+
+<p>Persistent tasks for periodic tasks the format for scheduling could be:</p>
+
+<ul>
+<li>cron format</li>
+<li>every (from creation time repeat every X seconds/minutes/duration)</li>
+</ul>
+
+<hr />
+
+<h3 id="payload">payload</h3>
+
+<p>The payload could be unique to a task of shared among others</p>
+
+<pre><code>uuid: unique id
+data: longtext
+</code></pre>
+
+<h3 id="messages">messages</h3>
+
+<p>In some cases it may be usefull to store the result from the task either at the end of on every stage:</p>
+
+<pre><code>tuuid:   task uuid
+message: longtext
+cdate:   creation date
+</code></pre>
+
                 </section>
             </article>
             <footer id="post-meta" class="clearfix">
@@ -182,7 +252,7 @@ task is re-queued.</p>
     
         
         <li>
-            <a href="https://marabunta.io/post/the-problem-to-solve/">The Problem to Solve</a>
+            <a href="https://marabunta.io/post/why/">Why</a>
         </li>
         
    

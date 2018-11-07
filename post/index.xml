@@ -12,11 +12,11 @@
     
     
     <item>
-      <title>The Problem to Solve</title>
-      <link>https://marabunta.io/post/the-problem-to-solve/</link>
+      <title>Why</title>
+      <link>https://marabunta.io/post/why/</link>
       <pubDate>Tue, 06 Nov 2018 15:13:13 +0100</pubDate>
       
-      <guid>https://marabunta.io/post/the-problem-to-solve/</guid>
+      <guid>https://marabunta.io/post/why/</guid>
       <description>There are many good tools, frameworks offering multiple solutions for managing jobs, tasks, queues, etc, many of them are listed here http://queues.io/.
 Technology changes and with this, new tools emerge. Days back you could be using gearman, these days probably nats.io or even ansible ad-hoc:
 $ ansible all -a &amp;quot;ping -c3 1.1.1.1&amp;quot; -u devops --become  Just as an example that with multiple technologies the same result can be achieved, some relatively easy, others faster, etc.</description>
