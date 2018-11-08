@@ -145,7 +145,7 @@ name:        task name
 payload:     payload (could be reused for multiple targets)
 retries:     int
 retried:     int
-schedule:    when to run the task
+schedule:    when to run the task (cron)
 sdate:       state date
 state:       created, queued, runnning, done, error
 target:      where to run the task
@@ -155,6 +155,9 @@ description: task description
 
 ---
 messages:    result, ouput etc (key tuuid)
+
+---
+payload:     json file
 
 </code></pre>
 
