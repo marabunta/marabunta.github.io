@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>How on marabunta</title>
+    <link>https://marabunta.io/tags/how/</link>
+    <description>Recent content in How on marabunta</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 08 Nov 2018 10:33:05 +0100</lastBuildDate>
+    
+	<atom:link href="https://marabunta.io/tags/how/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>How It Works</title>
+      <link>https://marabunta.io/post/how-it-works/</link>
+      <pubDate>Thu, 08 Nov 2018 10:33:05 +0100</pubDate>
+      
+      <guid>https://marabunta.io/post/how-it-works/</guid>
+      <description>Check the prototype</description>
+    </item>
+    
+  </channel>
+</rss>

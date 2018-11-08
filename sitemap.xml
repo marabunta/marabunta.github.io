@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://marabunta.io/post/how-it-works/</loc>
+    <lastmod>2018-11-08T10:33:05+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://marabunta.io/post/why/</loc>
     <lastmod>2018-11-06T15:13:13+01:00</lastmod>
   </url>
@@ -30,8 +35,14 @@
   </url>
   
   <url>
+    <loc>https://marabunta.io/tags/how/</loc>
+    <lastmod>2018-11-08T10:33:05+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://marabunta.io/post/</loc>
-    <lastmod>2018-11-06T15:13:13+01:00</lastmod>
+    <lastmod>2018-11-08T10:33:05+01:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -49,7 +60,7 @@
   
   <url>
     <loc>https://marabunta.io/</loc>
-    <lastmod>2018-11-06T15:13:13+01:00</lastmod>
+    <lastmod>2018-11-08T10:33:05+01:00</lastmod>
     <priority>0</priority>
   </url>
   
