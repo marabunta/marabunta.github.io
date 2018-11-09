@@ -76,9 +76,167 @@
                     </h2>
                 </header>
                 <section id="post-body">
-                    <p><img src="/img/how.png" alt="how-it-works" /></p>
+                    
 
-<p>Check the <a href="/post/prototype">prototype</a></p>
+<p><img src="/img/how.png" alt="how-it-works" /></p>
+
+<h1 id="in-a-nutshell">In a nutshell.</h1>
+
+<p>The task life cycle could be summarized in the following steps:</p>
+
+<ul>
+<li>A task is submitted via an HTTP API</li>
+<li>The task will be stored in a database (MySQL) for keeping track of it</li>
+<li>Based on the schedule, when is time to run it will be moved to a Redis queue</li>
+<li>The task is dispatched via gRPC to the targets</li>
+<li>The status of the task will be updated in the database</li>
+</ul>
+
+<hr />
+
+<p>The process is pretty straightforward one of the main design goals is to avoid
+unnecessary complexity, giving priority to performance and simple orchestration
+of the tasks at all cost as for the maintenance and scalability of the full
+system.</p>
+
+<p>Going further and in a try to extend this simplicity for 3rth party services
+using <strong>marabunta</strong>, a notification service is exposed in order to return
+notification in real time either via HTTP or gRPC allowing with this
+applications to integrate or take actions based on the status of a task and
+receive instant notifications instead of long polling for example.</p>
+
+<p>Below, more information in detail about the flow in each stage, also check the
+<a href="/post/prototype">prototype</a></p>
+
+<h2 id="http-rest-api">HTTP REST API</h2>
+
+<p>All interaction from the user side is via an HTTP REST API using JSON as the
+format, from the creation of the tasks as for query status about it.</p>
+
+<p>The tasks can be:</p>
+
+<ul>
+<li>on-demand</li>
+<li>scheduled</li>
+</ul>
+
+<p>The <strong>on-demand</strong> tasks are in a first come, first served basis, the
+<strong>scheduled</strong> follow a CRON expression like pattern.</p>
+
+<p>A draft of the JSON payload for creating a task <strong>on-demand</strong> could be something like:</p>
+
+<pre><code class="language-json">{
+    &quot;name&quot;: &quot;Hello World&quot;,
+    &quot;target&quot;: &quot;all&quot;,
+    &quot;when&quot;: &quot;now&quot;,
+    &quot;payload&quot;: {
+        &quot;task&quot;: &quot;echo hi!&quot;
+    }
+}
+</code></pre>
+
+<p>A draft of the JSON payload for creating an <strong>scheduled</strong> task could be something like:</p>
+
+<pre><code class="language-json">{
+    &quot;name&quot;: &quot;Hello World&quot;,
+    &quot;target&quot;: &quot;all&quot;,
+    &quot;when&quot;: &quot;@every 1h30m10s&quot;,
+    &quot;payload&quot;: {
+        &quot;task&quot;: &quot;echo I run every 1h, 30m and 10s from my creation time&quot;
+    }
+}
+</code></pre>
+
+<p>or</p>
+
+<pre><code class="language-json">{
+    &quot;name&quot;: &quot;Hello World&quot;,
+    &quot;target&quot;: &quot;all&quot;,
+    &quot;when&quot;: &quot;* */2 * * *&quot;,
+    &quot;payload&quot;: {
+        &quot;task&quot;: &quot;echo I run every 2 hours based on the server time&quot;
+    }
+}
+</code></pre>
+
+<blockquote>
+<p>Check the <a href="/post/payload">payload</a> section for more details.</p>
+</blockquote>
+
+<h2 id="from-http-to-mysql">From HTTP to MySQL</h2>
+
+<p>Before adding a task into the DB, the <strong>payload</strong> is verified, the main check is
+against the type of the task (value <strong>when</strong>).</p>
+
+<p>If the task is to be done &ldquo;NOW&rdquo; the task asynchronously is also queued into
+Redis if not later will be picked up and dispatched according to its schedule.</p>
+
+<h2 id="from-mysql-to-redis">From MySQL to Redis</h2>
+
+<p>The resolution for scheduled tasks is of 1 minute, this means that every minute
+a database query is run to fetch and check for new tasks to be dispatched.</p>
+
+<p>One or more instances (when scaling) could read the database and enqueue later
+into Redis, to prevent possible race conditions or duplicates the queries are
+transactional (InnoDB) from the DB size (<code>WHERE state == &quot;todo&quot;</code>).</p>
+
+<p>In the Redis side the <code>to-do</code> queue is a sorted set with the following format:</p>
+
+<pre><code>marabunta:todo &lt;timestamp of the task&gt; &lt;task UUID&gt;
+</code></pre>
+
+<p>The <code>timestamp</code> of the task is obtained from the defined scheduled same as the
+<code>task UUID</code> these two values are unique and consistent helping to guarantee that
+if one or more &ldquo;workers&rdquo; read from the *SQL database and write to the Redis
+set at the same time, by design the task record will be only updated but not
+duplicated, also the resolution for the dispatcher in the Redis side is 1 second
+(minimum unit on time on the Unix timestamp) in other words this helps to do an
+atomic transaction.</p>
+
+<h2 id="dispatching-the-task">Dispatching the task</h2>
+
+<p>The resolution for dispatching scheduled tasks is 1 second, but this doesn&rsquo;t
+mean that all the tasks need to wait one second before being executed, the
+on-demand tasks skip the &ldquo;todo&rdquo; queue and are &ldquo;queued&rdquo; directly to be processed.</p>
+
+<p>As described before, one or more processes query the database (MySQL) and then
+enqueue the tasks into Redis, the dispatching stage works exactly the same but
+in this case within Redis. To achieve &ldquo;atomic transactions&rdquo; when having more
+than one client &ldquo;dispatching&rdquo; the use of <code>WATCH</code> is used, more can be found in
+the Redis docs <a href="https://redis.io/topics/transactions">https://redis.io/topics/transactions</a>.</p>
+
+<p>The dispatcher query the <code>marabunta:todo</code> order set by using, something like:</p>
+
+<pre><code> ZRANGEBYSCORE marabunta:todo 0, &lt;current timestamp&gt; &quot;limit&quot;, 0, 1
+</code></pre>
+
+<p>Only one task is fetched at a time (trying to be atomic friendly), mainly
+because on the same transaction the result is pushed to a list:</p>
+
+<pre><code> LPUSH marabunta:queued &lt;task UUID&gt;
+</code></pre>
+
+<p>And then the task is removed from the <code>todo</code> queue:</p>
+
+<pre><code> ZREM marabunta:todo  &lt;task UUID&gt;
+</code></pre>
+
+<p>All this runs within a single transaction, by only fetching one record at
+a time, it may look like a penalty for performance but by doing some basic
+benchmarks running this on a system having <code>2.9 GHz Intel Core i9 &amp;&amp; 32 RAM</code>
+these were the results for a single &ldquo;worker&rdquo;</p>
+
+<ul>
+<li>for 100K (100,000) an average of 30 seconds</li>
+<li>for 1M (1,000,000) an average of 133 seconds less than 3 minutes (25MB disk <code>dump.rdb</code> size)</li>
+</ul>
+
+<p>Spawning more workers to concurrently dequeue didn&rsquo;t help much in terms of speed
+but is nice to know that if one worker goes down the others take over and no
+collisions/duplication of tasks occur so no worries when scaling.</p>
+
+<p>Everything is not about speed, but by mixing different technologies together and
+using them in where they shine must, the outcome is very positive.</p>
 
                 </section>
             </article>

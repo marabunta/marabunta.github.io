@@ -17,7 +17,8 @@
       <pubDate>Thu, 08 Nov 2018 10:33:05 +0100</pubDate>
       
       <guid>https://marabunta.io/post/how-it-works/</guid>
-      <description>Check the prototype</description>
+      <description>In a nutshell. The task life cycle could be summarized in the following steps:
+ A task is submitted via an HTTP API The task will be stored in a database (MySQL) for keeping track of it Based on the schedule, when is time to run it will be moved to a Redis queue The task is dispatched via gRPC to the targets The status of the task will be updated in the database  The process is pretty straightforward one of the main design goals is to avoid unnecessary complexity, giving priority to performance and simple orchestration of the tasks at all cost as for the maintenance and scalability of the full system.</description>
     </item>
     
     <item>
