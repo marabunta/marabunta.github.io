@@ -240,11 +240,12 @@ using them in where they shine must, the outcome is very positive.</p>
 
 <h3 id="grpc-bidirectional-stream">gRPC bidirectional stream</h3>
 
-<p>Once the tasks arrive into the <code>marabunta:queued</code>, the redis <code>BRPOPLPUSH</code>is used
-to deque and process the <code>task UUID</code>.</p>
+<p>Once the tasks arrive into the <code>marabunta:queued</code>, the redis <code>BRPOPLPUSH</code>
+command is used to deque and process the <code>task UUID</code>.</p>
 
-<p><strong>marabunta</strong> keeps a record of their available clients (🐜) and will send the
-<code>payload</code> only to the targets defined in the task and that are available.</p>
+<p><strong>marabunta</strong> keeps record of their available clients (🐜) and
+will send the <code>payload</code> only to the targets defined in the task and that are
+available.</p>
 
                 </section>
             </article>
