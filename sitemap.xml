@@ -29,14 +29,32 @@
   </url>
   
   <url>
+    <loc>https://marabunta.io/tags/backup/</loc>
+    <lastmod>2018-11-06T15:13:13+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://marabunta.io/tags/design/</loc>
     <lastmod>2018-11-05T11:02:09+01:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>https://marabunta.io/tags/firewall/</loc>
+    <lastmod>2018-11-06T15:13:13+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://marabunta.io/tags/how/</loc>
     <lastmod>2018-11-08T10:33:05+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://marabunta.io/tags/kanban/</loc>
+    <lastmod>2018-11-06T15:13:13+01:00</lastmod>
     <priority>0</priority>
   </url>
   
