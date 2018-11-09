@@ -18,6 +18,11 @@
   </url>
   
   <url>
+    <loc>https://marabunta.io/post/payload/</loc>
+    <lastmod>2017-11-10T00:31:54+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://marabunta.io/about/</loc>
     <lastmod>2017-06-30T14:44:15+02:00</lastmod>
   </url>
@@ -53,8 +58,20 @@
   </url>
   
   <url>
+    <loc>https://marabunta.io/tags/json/</loc>
+    <lastmod>2017-11-10T00:31:54+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://marabunta.io/tags/kanban/</loc>
     <lastmod>2018-11-06T15:13:13+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://marabunta.io/tags/payload/</loc>
+    <lastmod>2017-11-10T00:31:54+01:00</lastmod>
     <priority>0</priority>
   </url>
   

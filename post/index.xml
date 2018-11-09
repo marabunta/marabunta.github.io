@@ -41,5 +41,14 @@ $ ansible all -a &amp;quot;ping -c3 1.1.1.1&amp;quot; -u devops --become  Just a
       <description>The big picture Tasks are stored in a MySQL, a worker (scheduler) periodically check the schedules and creates, updates or remove tasks from a live queue that uses redis, rabbitmq, nats, etc as a backend. One or more clients consume the queue and via a bidirectional gRPC stream dispatch the task to the proper client, if the task is finished, the client updates the result/status via gRPC Unary if not task is re-queued.</description>
     </item>
     
+    <item>
+      <title>Payload</title>
+      <link>https://marabunta.io/post/payload/</link>
+      <pubDate>Fri, 10 Nov 2017 00:31:54 +0100</pubDate>
+      
+      <guid>https://marabunta.io/post/payload/</guid>
+      <description> The Schema </description>
+    </item>
+    
   </channel>
 </rss>

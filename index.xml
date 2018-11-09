@@ -42,6 +42,15 @@ $ ansible all -a &amp;quot;ping -c3 1.1.1.1&amp;quot; -u devops --become  Just a
     </item>
     
     <item>
+      <title>Payload</title>
+      <link>https://marabunta.io/post/payload/</link>
+      <pubDate>Fri, 10 Nov 2017 00:31:54 +0100</pubDate>
+      
+      <guid>https://marabunta.io/post/payload/</guid>
+      <description> The Schema </description>
+    </item>
+    
+    <item>
       <title>About</title>
       <link>https://marabunta.io/about/</link>
       <pubDate>Fri, 30 Jun 2017 14:44:15 +0200</pubDate>
