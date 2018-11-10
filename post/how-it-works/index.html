@@ -100,8 +100,8 @@ of the tasks at all cost as for the maintenance and scalability of the full
 system.</p>
 
 <p>Going further and in a try to extend this simplicity for 3rth party services
-using <strong>marabunta</strong>, a notification service is exposed in order to return
-notification in real time either via HTTP or gRPC allowing with this
+using <strong>marabunta</strong> as a service, a notification service is exposed in order to
+return notification in real time either via HTTP or gRPC allowing with this
 applications to integrate or take actions based on the status of a task and
 receive instant notifications instead of long polling for example.</p>
 
@@ -123,7 +123,8 @@ format, from the creation of the tasks as for query status about it.</p>
 <p>The <strong>on-demand</strong> tasks are in a first come, first served basis, the
 <strong>scheduled</strong> follow a CRON expression like pattern.</p>
 
-<p>A draft of the JSON payload for creating a task <strong>on-demand</strong> could be something like:</p>
+<p>A draft of the JSON payload for creating a task <strong>on-demand</strong> could be something
+like:</p>
 
 <pre><code class="language-json">{
     &quot;name&quot;: &quot;Hello World&quot;,
@@ -135,7 +136,8 @@ format, from the creation of the tasks as for query status about it.</p>
 }
 </code></pre>
 
-<p>A draft of the JSON payload for creating an <strong>scheduled</strong> task could be something like:</p>
+<p>A draft of the JSON payload for creating an <strong>scheduled</strong> task could be something
+like:</p>
 
 <pre><code class="language-json">{
     &quot;name&quot;: &quot;Hello World&quot;,
@@ -168,7 +170,7 @@ format, from the creation of the tasks as for query status about it.</p>
 <p>Before adding a task into the DB, the <strong>payload</strong> is verified, the main check is
 against the type of the task (value <strong>when</strong>).</p>
 
-<p>If the task is to be done &ldquo;NOW&rdquo; the task asynchronously is also queued into
+<p>If the task is to be done &ldquo;<strong>NOW</strong>&rdquo;, the task asynchronously is also queued into
 Redis if not later will be picked up and dispatched according to its schedule.</p>
 
 <h2 id="from-mysql-to-redis">From MySQL to Redis</h2>
@@ -186,12 +188,12 @@ transactional (InnoDB) from the DB size (<code>WHERE state == &quot;todo&quot;</
 </code></pre>
 
 <p>The <code>timestamp</code> of the task is obtained from the defined scheduled same as the
-<code>task UUID</code> these two values are unique and consistent helping to guarantee that
-if one or more &ldquo;workers&rdquo; read from the *SQL database and write to the Redis
-set at the same time, by design the task record will be only updated but not
-duplicated, also the resolution for the dispatcher in the Redis side is 1 second
-(minimum unit on time on the Unix timestamp) in other words this helps to do an
-atomic transaction.</p>
+<code>task UUID</code>, these two values are unique and consistent helping to guarantee
+that if one or more &ldquo;workers&rdquo; read from the SQL database and write to the Redis
+&ldquo;sorted set&rdquo; at the same time, by design the task record will be only updated
+but not duplicated, also the resolution for the dispatcher in the Redis side is
+1 second (minimum unit on time on the Unix timestamp) in other words this helps
+to do an atomic transaction.</p>
 
 <h2 id="dispatching-the-task">Dispatching the task</h2>
 
@@ -202,16 +204,15 @@ on-demand tasks skip the &ldquo;todo&rdquo; queue and are &ldquo;queued&rdquo; d
 <p>As described before, one or more processes query the database (MySQL) and then
 enqueue the tasks into Redis, the dispatching stage works exactly the same but
 in this case within Redis. To achieve &ldquo;atomic transactions&rdquo; when having more
-than one client &ldquo;dispatching&rdquo; the use of <code>WATCH</code> is used, more can be found in
-the Redis docs <a href="https://redis.io/topics/transactions">https://redis.io/topics/transactions</a>.</p>
+than one client &ldquo;dispatching&rdquo; the use of the command <code>WATCH</code> is used, more can
+be found in the Redis docs <a href="https://redis.io/topics/transactions">https://redis.io/topics/transactions</a>.</p>
 
 <p>The dispatcher query the <code>marabunta:todo</code> order set by using, something like:</p>
 
 <pre><code> ZRANGEBYSCORE marabunta:todo 0, &lt;current timestamp&gt; &quot;limit&quot;, 0, 1
 </code></pre>
 
-<p>Only one task is fetched at a time (trying to be atomic friendly), mainly
-because on the same transaction the result is pushed to a list:</p>
+<p>Only one task is fetched at a time, and later pushed to a list:</p>
 
 <pre><code> LPUSH marabunta:queued &lt;task UUID&gt;
 </code></pre>
@@ -223,7 +224,7 @@ because on the same transaction the result is pushed to a list:</p>
 
 <p>All this runs within a single transaction, by only fetching one record at
 a time, it may look like a penalty for performance but by doing some basic
-benchmarks running this on a system having <code>2.9 GHz Intel Core i9 &amp;&amp; 32 RAM</code>
+benchmarks running this on a system having <code>2.9 GHz Intel Core i9</code>
 these were the results for a single &ldquo;worker&rdquo;</p>
 
 <ul>
@@ -231,17 +232,17 @@ these were the results for a single &ldquo;worker&rdquo;</p>
 <li>for 1M (1,000,000) an average of 133 seconds less than 3 minutes (25MB disk <code>dump.rdb</code> size)</li>
 </ul>
 
-<p>Spawning more workers to concurrently dequeue didn&rsquo;t help much in terms of speed
-but is nice to know that if one worker goes down the others take over and no
-collisions/duplication of tasks occur so no worries when scaling.</p>
+<p>Spawning more workers to concurrently dequeue, didn&rsquo;t help much in terms of
+speed, but is nice to know that if one worker goes down the others take over and
+no collisions/duplication of tasks occur so no worries when scaling.</p>
 
 <p>Everything is not about speed, but by mixing different technologies together and
 using them in where they shine must, the outcome is very positive.</p>
 
 <h3 id="grpc-bidirectional-stream">gRPC bidirectional stream</h3>
 
-<p>Once the tasks arrive into the <code>marabunta:queued</code>, the redis <code>BRPOPLPUSH</code>
-command is used to deque and process the <code>task UUID</code>.</p>
+<p>Once the tasks arrive into the <code>marabunta:queued</code>, the redis command
+<code>BRPOPLPUSH</code> is used to deque and process the <code>task UUID</code>.</p>
 
 <p><strong>marabunta</strong> keeps record of their available clients (🐜) and
 will send the <code>payload</code> only to the targets defined in the task and that are
