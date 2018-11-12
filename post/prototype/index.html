@@ -145,7 +145,7 @@ name:        task name
 payload:     payload (could be reused for multiple targets)
 retries:     int
 retried:     int
-schedule:    when to run the task (cron)
+when:        when to run the task (cron)
 sdate:       state date
 state:       created, queued, runnning, done, error
 target:      where to run the task
@@ -182,8 +182,8 @@ payload:     json file
 2: scheduled
 </code></pre>
 
-<p><strong>Ondemand (FCFS)</strong>
-first come, first served basis, normally not persistent bypassing the database going directly to the dispatcher.</p>
+<p><strong>Ondemand (FCFS)</strong> first come, first served basis, normally not persistent
+bypassing the database going directly to the dispatcher.</p>
 
 <p><strong>Scheduled</strong></p>
 

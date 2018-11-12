@@ -17,7 +17,7 @@
       <pubDate>Fri, 10 Nov 2017 00:31:54 +0100</pubDate>
       
       <guid>https://marabunta.io/post/payload/</guid>
-      <description> The Schema </description>
+      <description> The Schema { &amp;quot;description&amp;quot;: &amp;quot;optional&amp;quot;, &amp;quot;enabled&amp;quot;: 1, &amp;quot;name&amp;quot;: &amp;quot;name of the tasks&amp;quot;, &amp;quot;payload&amp;quot;: { &amp;quot;metadata&amp;quot;: { &amp;quot;key&amp;quot;: &amp;quot;value&amp;quot; }, &amp;quot;task&amp;quot;: &amp;quot;command args&amp;quot; }, &amp;quot;retries&amp;quot;: 0, &amp;quot;target&amp;quot;: &amp;quot;where to execute the task&amp;quot;, &amp;quot;when&amp;quot;: &amp;quot;when to execute it&amp;quot; }  </description>
     </item>
     
   </channel>
