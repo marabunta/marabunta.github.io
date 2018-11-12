@@ -26,9 +26,9 @@
       <pubDate>Fri, 10 Nov 2017 00:00:54 +0100</pubDate>
       
       <guid>https://marabunta.io/post/api/</guid>
-      <description>All tasks are managed via an HTTP REST API.
-Creating a task: The enpoint: /task/
-   HTTP method CRUD Description Status code     POST Create Create a task 201 (OK)   GET Read Get a task /task/&amp;lt;UUID&amp;gt; 200 (OK), 404 (If ID not found)   PUT Update Update/modify a task /task/&amp;lt;UUID&amp;gt; 204 (OK), 404 (If ID not found)   DELETE Delete Delete a task /task/&amp;lt;UUID&amp;gt; 204 (OK), 404 (If ID not found)    Get all tasks: The enpoint: /tasks/</description>
+      <description> All tasks are managed via an HTTP REST API.
+Creating a task: The enpoint: /tasks/
+   HTTP method CRUD Description Status code     POST Create Create a task 201 (OK)   GET Read Get all tasks 200 (OK)   GET Read Get a task /tasks/:UUID 200 (OK), 404 (If ID not found)   PUT Update Update/modify a task /tasks/:UUID 204 (OK), 404 (If ID not found)   DELETE Delete Delete a task /tasks/:UUID 204 (OK), 404 (If ID not found)    </description>
     </item>
     
   </channel>
