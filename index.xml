@@ -51,6 +51,17 @@ $ ansible all -a &amp;quot;ping -c3 1.1.1.1&amp;quot; -u devops --become  Just a
     </item>
     
     <item>
+      <title>API</title>
+      <link>https://marabunta.io/post/api/</link>
+      <pubDate>Fri, 10 Nov 2017 00:00:54 +0100</pubDate>
+      
+      <guid>https://marabunta.io/post/api/</guid>
+      <description>All tasks are managed via an HTTP REST API.
+Creating a task: The enpoint: /task/
+   HTTP method CRUD Description Status code     POST Create Create a task 201 (OK)   GET Read Get a task /task/&amp;lt;UUID&amp;gt; 200 (OK), 404 (If ID not found)   PUT Update Update/modify a task /task/&amp;lt;UUID&amp;gt; 204 (OK), 404 (If ID not found)   DELETE Delete Delete a task /task/&amp;lt;UUID&amp;gt; 204 (OK), 404 (If ID not found)    Get all tasks: The enpoint: /tasks/</description>
+    </item>
+    
+    <item>
       <title>About</title>
       <link>https://marabunta.io/about/</link>
       <pubDate>Fri, 30 Jun 2017 14:44:15 +0200</pubDate>

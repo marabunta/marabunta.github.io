@@ -23,8 +23,19 @@
   </url>
   
   <url>
+    <loc>https://marabunta.io/post/api/</loc>
+    <lastmod>2017-11-10T00:00:54+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://marabunta.io/about/</loc>
     <lastmod>2017-06-30T14:44:15+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://marabunta.io/tags/api/</loc>
+    <lastmod>2017-11-10T00:00:54+01:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -54,6 +65,12 @@
   <url>
     <loc>https://marabunta.io/tags/how/</loc>
     <lastmod>2018-11-08T10:33:05+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://marabunta.io/tags/http/</loc>
+    <lastmod>2017-11-10T00:00:54+01:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -89,7 +106,7 @@
   
   <url>
     <loc>https://marabunta.io/tags/</loc>
-    <lastmod>2018-11-05T11:02:09+01:00</lastmod>
+    <lastmod>2017-11-10T00:00:54+01:00</lastmod>
     <priority>0</priority>
   </url>
   
