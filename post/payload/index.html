@@ -87,6 +87,9 @@
     &quot;enabled&quot;: 1,
     &quot;name&quot;: &quot;name of the tasks&quot;,
     &quot;payload&quot;: {
+        &quot;attachments&quot;: {
+            &quot;/tmp/ok.jpg&quot;: &quot;base64&quot;
+        },
         &quot;metadata&quot;: {
             &quot;key&quot;: &quot;value&quot;
         },
@@ -97,6 +100,105 @@
     &quot;when&quot;: &quot;when to execute it&quot;
 }
 </code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Mandatory</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>description</td>
+<td>NO</td>
+<td>Description of the task</td>
+</tr>
+
+<tr>
+<td>enabled</td>
+<td>NO</td>
+<td>Defaults to 1 (yes)</td>
+</tr>
+
+<tr>
+<td>name</td>
+<td>YES</td>
+<td>Name of the task</td>
+</tr>
+
+<tr>
+<td>payload</td>
+<td>YES</td>
+<td>payload for the task (check the payload schema)</td>
+</tr>
+
+<tr>
+<td>retries</td>
+<td>NO</td>
+<td>The number of tries if the task fails, defaults to 0</td>
+</tr>
+
+<tr>
+<td>target</td>
+<td>YES</td>
+<td>The name of the target where the task will be run</td>
+</tr>
+
+<tr>
+<td>when</td>
+<td>YES</td>
+<td>schedule for the task</td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="payload-schema">Payload schema</h1>
+
+<pre><code class="language-json">&quot;payload&quot;: {
+    &quot;attachments&quot;: {
+        &quot;/tmp/ok.jpg&quot;: &quot;base64&quot;
+    },
+    &quot;metadata&quot;: {
+        &quot;key&quot;: &quot;value&quot;
+    },
+    &quot;task&quot;: &quot;command args&quot;
+}
+</code></pre>
+
+<p>The payload is always sent to the clients that will be runing the task:</p>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Mandatory</th>
+<th>description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>attachments</td>
+<td>NO</td>
+<td>Extra files base64 encoded</td>
+</tr>
+
+<tr>
+<td>metadata</td>
+<td>NO</td>
+<td>Metadata for the task</td>
+</tr>
+
+<tr>
+<td>task</td>
+<td>YES</td>
+<td>command to execute</td>
+</tr>
+</tbody>
+</table>
 
                 </section>
             </article>
